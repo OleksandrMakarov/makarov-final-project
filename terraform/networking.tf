@@ -36,7 +36,7 @@ resource "aws_subnet" "subnet-public-jenkins" {
 
 resource "aws_subnet" "subnet-public-web-app" {
   cidr_block = "192.168.2.0/24"
-  vpc_id = aws_vpc.simple-web-app.id
+  vpc_id = aws_vpc.test-web-app.id
   availability_zone = var.aws_region_zone
 
   tags = {
@@ -115,7 +115,7 @@ resource "aws_security_group" "allow-jenkins-traffic" {
 resource "aws_security_group" "allow-staging-traffic" {
   name = "allow-stagin-traffic"
   description = "Allow Inbound traffic for security checks"
-  vpc_id = aws_vpc.simple-web-app.id
+  vpc_id = aws_vpc.test-web-app.id
 
   ingress {
     description = "Staging"
@@ -152,7 +152,7 @@ resource "aws_network_interface" "jenkins" {
                      aws_security_group.allow-staging-traffic.id]
 }
 
-# 7.2 Create a Network Interface for Simple Web App
+# 7.2 Create a Network Interface for Test Web App
 
 resource "aws_network_interface" "test-web-app" {
   subnet_id = aws_subnet.subnet-public-web-app.id
@@ -173,13 +173,13 @@ resource "aws_eip" "jenkins" {
   ]
 }
 
-# 8.2 Assign an Elastic IP to the Network Interface of Simple Web App
+# 8.2 Assign an Elastic IP to the Network Interface of Test Web App
 
-resource "aws_eip" "simple-web-app" {
+resource "aws_eip" "test-web-app" {
   vpc = true
-  network_interface = aws_network_interface.simple-web-app.id
+  network_interface = aws_network_interface.test-web-app.id
   associate_with_private_ip = "10.0.3.50"
   depends_on = [
-    aws_internet_gateway.simple-web-app
+    aws_internet_gateway.test-web-app
   ]
 }

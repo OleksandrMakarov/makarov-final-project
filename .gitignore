@@ -135,3 +135,4 @@ mochawesome-report
 terraform.tfvars
 .terraform
 .terraform.lock.hcl
+*.pem
