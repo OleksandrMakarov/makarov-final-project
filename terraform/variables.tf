@@ -12,3 +12,11 @@ variable "aws_secret_key" {
   description = "Provide AWS secret key:"
   type        = string
 }
+
+variable "general_tag" {
+  default = "Final Project"
+}
+
+variable "aws_region_zone" {
+  default = "eu-central-1a"
+}
