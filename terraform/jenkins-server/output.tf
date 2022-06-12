@@ -1,5 +1,5 @@
 output "instance-id" {
-  value = aws_instance.default.id
+  value = aws_instance.jenkins_server.id
 }
 
 output "name" {
@@ -7,5 +7,5 @@ output "name" {
 }
 
 output "private-ip" {
-  value = aws_instance.default.private_ip
+  value = aws_instance.jenkins_server.private_ip
 }

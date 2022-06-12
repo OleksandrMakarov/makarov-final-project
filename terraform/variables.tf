@@ -36,3 +36,11 @@ variable "key_name_app" {
 variable "key_name_jenkins" {
   default = "jenkins_key"
 }
+
+variable "jenkins_public_ip" {
+  default = "Jenkins public IP"
+}
+
+variable "app_public_ip" {
+  default = "Application public IP"
+}

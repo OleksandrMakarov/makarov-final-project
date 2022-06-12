@@ -1,4 +1,4 @@
-resource "aws_instance" "default" {
+resource "aws_instance" "app-server" {
   ami = var.ami-id
   iam_instance_profile = var.iam-instance-profile
   instance_type = var.instance-type

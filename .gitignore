@@ -132,7 +132,11 @@ dist
 # Mochawesome-report
 mochawesome-report
 
-terraform.tfvars
-.terraform
+# Terraform
+*.tfvars
+.terraform*
 .terraform.lock.hcl
+*.tfstate*
+
+# Keys
 *.pem
