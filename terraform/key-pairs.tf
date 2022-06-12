@@ -1,3 +1,5 @@
+# Create key pair for web app server
+
 resource "tls_private_key" "app_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -11,6 +13,13 @@ resource "aws_key_pair" "app_final_key" {
     Name = var.key_name_app
   }
 }
+
+resource "local_file" "app_key" {
+  content  = tls_private_key.app_key.private_key_pem
+  filename = "${var.key_name_app}.pem"
+}
+
+# Create key pair for Jenkins server
 
 resource "tls_private_key" "jenkins_key" {
   algorithm = "RSA"
@@ -26,12 +35,14 @@ resource "aws_key_pair" "jenkins_final_key" {
   }
 }
 
-resource "local_file" "app_key" {
-  content  = tls_private_key.app_key.private_key_pem
-  filename = "${var.key_name_app}.pem"
-}
-
 resource "local_file" "jenkins_key" {
   content  = tls_private_key.jenkins_key.private_key_pem
   filename = "${var.key_name_jenkins}.pem"
+}
+
+# Create key pair for git
+
+resource "tls_private_key" "git_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }

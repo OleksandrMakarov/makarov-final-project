@@ -21,6 +21,12 @@ module "jenkins" {
 
   bucket-logs-name   = aws_s3_bucket.logs_web_app.id
   bucket-config-name = aws_s3_bucket.jenkins_config.id
+
+  remote-repo = var.remote-repo
+  job-name    = var.job-name
+  job-id      = random_id.job-id.id
+
+  
 }
 
 
