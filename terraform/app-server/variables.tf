@@ -14,6 +14,7 @@ variable "instance-type" {
 
 variable "name" {
   type = string
+  default = "Web App Server"
 }
 
 variable "key-pair" {

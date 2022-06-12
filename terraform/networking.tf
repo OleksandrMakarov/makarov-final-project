@@ -1,4 +1,4 @@
-resource "aws_vpc" "test-web-app" {
+resource "aws_vpc" "web-app" {
   cidr_block           = "192.168.0.0/16"
   enable_dns_hostnames = true
 
@@ -7,16 +7,16 @@ resource "aws_vpc" "test-web-app" {
   }
 }
 
-resource "aws_internet_gateway" "test-web-app" {
-  vpc_id = aws_vpc.test-web-app.id
+resource "aws_internet_gateway" "web-app" {
+  vpc_id = aws_vpc.web-app.id
 }
 
 resource "aws_route_table" "allow-outgoing-access" {
-  vpc_id = aws_vpc.test-web-app.id
+  vpc_id = aws_vpc.web-app.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.test-web-app.id
+    gateway_id = aws_internet_gateway.web-app.id
   }
 
   tags = {
@@ -26,7 +26,7 @@ resource "aws_route_table" "allow-outgoing-access" {
 
 resource "aws_subnet" "subnet-public-jenkins" {
   cidr_block        = "192.168.1.0/24"
-  vpc_id            = aws_vpc.test-web-app.id
+  vpc_id            = aws_vpc.web-app.id
   availability_zone = var.aws_region_zone
 
   tags = {
@@ -36,7 +36,7 @@ resource "aws_subnet" "subnet-public-jenkins" {
 
 resource "aws_subnet" "subnet-public-web-app" {
   cidr_block        = "192.168.2.0/24"
-  vpc_id            = aws_vpc.test-web-app.id
+  vpc_id            = aws_vpc.web-app.id
   availability_zone = var.aws_region_zone
 
   tags = {
@@ -59,7 +59,7 @@ resource "aws_route_table_association" "web-app-subnet" {
 resource "aws_security_group" "allow-web-traffic" {
   name        = "allow-web-traffic"
   description = "Allow HTTP / HTTPS inbound traffic"
-  vpc_id      = aws_vpc.test-web-app.id
+  vpc_id      = aws_vpc.web-app.id
 
   ingress {
     description = "HTTP"
@@ -83,7 +83,7 @@ resource "aws_security_group" "allow-web-traffic" {
 resource "aws_security_group" "allow-ssh-traffic" {
   name        = "allow-ssh-traffic"
   description = "Allow SSH inbound traffic"
-  vpc_id      = aws_vpc.test-web-app.id
+  vpc_id      = aws_vpc.web-app.id
 
   ingress {
     description = "SSH"
@@ -99,7 +99,7 @@ resource "aws_security_group" "allow-ssh-traffic" {
 resource "aws_security_group" "allow-jenkins-traffic" {
   name        = "allow-jenkins-traffic"
   description = "Allow jenkins inbound traffic"
-  vpc_id      = aws_vpc.test-web-app.id
+  vpc_id      = aws_vpc.web-app.id
 
   ingress {
     description = "Jenkins"
@@ -115,7 +115,7 @@ resource "aws_security_group" "allow-jenkins-traffic" {
 resource "aws_security_group" "allow-staging-traffic" {
   name        = "allow-stagin-traffic"
   description = "Allow Inbound traffic for security checks"
-  vpc_id      = aws_vpc.test-web-app.id
+  vpc_id      = aws_vpc.web-app.id
 
   ingress {
     description = "Staging"
@@ -131,7 +131,7 @@ resource "aws_security_group" "allow-staging-traffic" {
 resource "aws_security_group" "allow-all-outbound" {
   name        = "allow-all-outbound"
   description = "Allow all outbound traffic"
-  vpc_id      = aws_vpc.test-web-app.id
+  vpc_id      = aws_vpc.web-app.id
 
   egress {
     from_port   = 0
@@ -152,9 +152,9 @@ resource "aws_network_interface" "jenkins" {
   aws_security_group.allow-staging-traffic.id]
 }
 
-# 7.2 Create a Network Interface for Test Web App
+# 7.2 Create a Network Interface for Web App
 
-resource "aws_network_interface" "test-web-app" {
+resource "aws_network_interface" "web-app" {
   subnet_id   = aws_subnet.subnet-public-web-app.id
   private_ips = ["192.168.2.50"]
   security_groups = [aws_security_group.allow-all-outbound.id,
@@ -169,7 +169,7 @@ resource "aws_eip" "jenkins" {
   network_interface         = aws_network_interface.jenkins.id
   associate_with_private_ip = "192.168.1.50"
   depends_on = [
-    aws_internet_gateway.test-web-app
+    aws_internet_gateway.web-app
   ]
 
   tags = {
@@ -177,14 +177,14 @@ resource "aws_eip" "jenkins" {
   }
 }
 
-# 8.2 Assign an Elastic IP to the Network Interface of Test Web App
+# 8.2 Assign an Elastic IP to the Network Interface of Web App
 
-resource "aws_eip" "test-web-app" {
+resource "aws_eip" "web-app" {
   vpc                       = true
-  network_interface         = aws_network_interface.test-web-app.id
+  network_interface         = aws_network_interface.web-app.id
   associate_with_private_ip = "192.168.2.50"
   depends_on = [
-    aws_internet_gateway.test-web-app
+    aws_internet_gateway.web-app
   ]
 
   tags = {

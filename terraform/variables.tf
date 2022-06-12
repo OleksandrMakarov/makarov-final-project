@@ -30,17 +30,45 @@ variable "aws_ami_owner" {
 }
 
 variable "key_name_app" {
-  default = "app_key"
+  default = "App_server_key"
 }
 
 variable "key_name_jenkins" {
-  default = "jenkins_key"
+  default = "Jenkins_server_key"
 }
 
 variable "jenkins_public_ip" {
-  default = "Jenkins public IP"
+  default = "Jenkins_public_IP"
 }
 
 variable "app_public_ip" {
-  default = "Application public IP"
+  default = "Application_public_IP"
+}
+
+variable "admin-username" {
+  type = string
+}
+
+variable "admin-password" {
+  type = string
+}
+
+variable "admin-fullname" {
+  type = string
+}
+
+variable "admin-email" {
+  type = string
+}
+
+variable "remote-repo" {
+  type = string
+}
+
+variable "job-name" {
+  type = string
+}
+
+variable "secrets" {
+  type = map(string)
 }
