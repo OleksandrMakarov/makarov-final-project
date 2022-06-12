@@ -29,6 +29,10 @@ variable "aws_ami_owner" {
   default = "099720109477" # Canonical
 }
 
-variable "key_name" {
-  default = "final_key"
+variable "key_name_app" {
+  default = "app_key"
+}
+
+variable "key_name_jenkins" {
+  default = "jenkins_key"
 }
