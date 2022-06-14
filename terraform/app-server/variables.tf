@@ -4,16 +4,16 @@ variable "ami-id" {
 
 variable "iam-instance-profile" {
   default = ""
-  type = string
+  type    = string
 }
 
 variable "instance-type" {
-  type = string
+  type    = string
   default = "t2.micro"
 }
 
 variable "name" {
-  type = string
+  type    = string
   default = "Web App Server"
 }
 
@@ -30,5 +30,17 @@ variable "device-index" {
 }
 
 variable "repository-url" {
+  type = string
+}
+
+variable "aws_region" {
+  type = string
+}
+
+variable "aws_access_key" {
+  type = string
+}
+
+variable "aws_secret_key" {
   type = string
 }

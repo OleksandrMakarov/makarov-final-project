@@ -8,7 +8,12 @@ resource "aws_instance" "app-server" {
     network_interface_id = var.network-interface-id
   }
 
-  user_data = templatefile("${path.module}/user_data.sh", { repository_url = var.repository-url })
+  user_data = templatefile("${path.module}/user_data.sh", {
+    repository_url = var.repository-url,
+    aws_access_key = var.aws_access_key,
+    aws_secret_key = var.aws_secret_key,
+    aws_region     = var.aws_region
+  })
 
   tags = {
     Name = var.name

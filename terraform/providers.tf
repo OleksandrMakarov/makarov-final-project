@@ -8,10 +8,10 @@ terraform {
   backend "s3" {
     bucket = "makarov-trf-s3-backend-final-project"
     region = "eu-central-1"
-    key = "terraform.tfstate"
+    key    = "terraform.tfstate"
   }
-  
-  
+
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"

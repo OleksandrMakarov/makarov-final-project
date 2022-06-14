@@ -26,6 +26,9 @@ module "jenkins" {
   job-name    = var.job-name
   job-id      = random_id.job-id.id
 
+  aws_access_key       = var.aws_access_key
+  aws_secret_key       = var.aws_secret_key
+  aws_region           = var.aws_region
   
 }
 
