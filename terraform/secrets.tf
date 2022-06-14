@@ -1,5 +1,6 @@
 resource "aws_secretsmanager_secret" "web-app" {
   name = "web-app"
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "web-app" {
