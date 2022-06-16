@@ -2,10 +2,10 @@
 old_password=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
 
 # NEW ADMIN CREDENTIALS URL ENCODED USING PYTHON
-password_URLEncoded=$(python -c "import urllib;print urllib.quote(raw_input(), safe='')" <<< "$password")
-username_URLEncoded=$(python -c "import urllib;print urllib.quote(raw_input(), safe='')" <<< "$user")
-fullname_URLEncoded=$(python -c "import urllib;print urllib.quote(raw_input(), safe='')" <<< "$admin_fullname")
-email_URLEncoded=$(python -c "import urllib;print urllib.quote(raw_input(), safe='')" <<< "$admin_email")
+password_URLEncoded=$(python3 -c "import urllib.parse;print(urllib.parse.quote(input(), safe=''))" <<< "$password")
+username_URLEncoded=$(python3 -c "import urllib.parse;print(urllib.parse.quote(input(), safe=''))" <<< "$user")
+fullname_URLEncoded=$(python3 -c "import urllib.parse;print(urllib.parse.quote(input(), safe=''))" <<< "$admin_fullname")
+email_URLEncoded=$(python3 -c "import urllib.parse;print(urllib.parse.quote(input(), safe=''))" <<< "$admin_email")
 
 # GET THE CRUMB AND COOKIE
 cookie_jar="$(mktemp)"

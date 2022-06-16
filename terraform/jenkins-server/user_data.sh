@@ -92,11 +92,11 @@ sudo sleep 120
 ./create_credentials.sh
 
 # Output the credentials id in a credentials_id file
-python -c "import sys;
+python3 -c "import sys;
 import json;
 print(
   json.loads(
-    raw_input()
+    input()
   )
   ['credentials'][0]['id']
 )" <<< 
