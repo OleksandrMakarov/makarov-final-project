@@ -43,6 +43,7 @@ resource "aws_s3_bucket_acl" "jenkins_config_acl" {
 resource "aws_s3_object" "jenkins_config" {
   bucket   = aws_s3_bucket.jenkins_config.id
   for_each = fileset("jenkins-config/", "*")
-  key      = "jenkins-config/${each.value}"
+  key      = each.value
+  source   = "jenkins-config/${each.value}"
   etag     = filemd5("jenkins-config/${each.value}")
 }

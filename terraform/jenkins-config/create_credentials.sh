@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Retrieve Secrets and Extract the Private key using a python command
-python -c "import sys;import json;print(json.loads(json.loads(raw_input())['SecretString'])['private'])" <<< $(aws secretsmanager get-secret-value --secret-id web-app --region eu-central-1) > ssh_tmp
+aws secretsmanager get-secret-value --secret-id web-app --region eu-central-1 | jq --raw-output '.SecretString' | jq -r .private > ssh_tmp
 
 # Correctly parse the new line characters and store the key in a variable
 ssh_private_key=$(awk -v ORS='\\n' '1' ssh_tmp)
