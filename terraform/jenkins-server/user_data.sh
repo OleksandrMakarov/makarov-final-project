@@ -5,7 +5,7 @@ sudo apt update -y
 sudo apt install openjdk-11-jre -y
 
 # Install jq
-sudo apt install jq
+sudo apt install jq -y
 
 # Install Jenkins
 curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
