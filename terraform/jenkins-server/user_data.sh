@@ -105,6 +105,6 @@ $(./get_credentials_id.sh) > credentials_id
 ./create_multibranch_pipeline.sh
 
 # DELETE THE CONFIG FILES
-sudo rm *.sh credentials_id
+# sudo rm *.sh credentials_id
 
 sudo reboot
