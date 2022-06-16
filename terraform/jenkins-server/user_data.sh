@@ -72,7 +72,7 @@ sudo chown -R jenkins /var/lib/jenkins/opt/
 sudo chgrp -R jenkins /var/lib/jenkins/opt/
 
 # Wait for Jenkins to boot up
-sudo sleep 60
+sudo sleep 120
 
 # DEFINE THE GLOBAL VARIABLES
 export url="http://${public_dns}:8080"
