@@ -10,10 +10,10 @@ sudo apt install mc -y
 
 # Install Jenkins
 curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
-  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  /usr/share/keyrings/jenkins-keyring.asc >/dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null
+  /etc/apt/sources.list.d/jenkins.list >/dev/null
 sudo apt update -y
 sudo apt install jenkins -y
 sudo systemctl daemon-reload
@@ -27,14 +27,14 @@ sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 sudo apt update -y
 sudo apt-get install docker-ce docker-ce-cli -y
 sudo systemctl start docker
 sudo systemctl enable docker
 
 # AWS
-sudo apt update 
+sudo apt update
 sudo apt install unzip -y
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -62,10 +62,10 @@ sudo mv arachni-1.6.1.3-0.6.1.1 /var/lib/jenkins/opt
 
 # Save the instance_id, repositories urls and bucket name to use in the pipeline
 sudo /bin/bash -c "echo ${repository_url} > /var/lib/jenkins/opt/repository_url" &&
-sudo /bin/bash -c "echo ${repository_test_url} > /var/lib/jenkins/opt/repository_test_url" &&
-sudo /bin/bash -c "echo ${repository_staging_url} > /var/lib/jenkins/opt/repository_staging_url" &&
-sudo /bin/bash -c "echo ${instance_id} > /var/lib/jenkins/opt/instance_id" &&
-sudo /bin/bash -c "echo ${bucket_logs_name} > /var/lib/jenkins/opt/bucket_name"
+  sudo /bin/bash -c "echo ${repository_test_url} > /var/lib/jenkins/opt/repository_test_url" &&
+  sudo /bin/bash -c "echo ${repository_staging_url} > /var/lib/jenkins/opt/repository_staging_url" &&
+  sudo /bin/bash -c "echo ${instance_id} > /var/lib/jenkins/opt/instance_id" &&
+  sudo /bin/bash -c "echo ${bucket_logs_name} > /var/lib/jenkins/opt/bucket_name"
 
 # Change ownership and group of these files
 sudo chown -R jenkins /var/lib/jenkins/opt/
@@ -96,7 +96,7 @@ sudo sleep 120
 ./create_credentials.sh
 
 # Output the credentials id in a credentials_id file
-python3 -c "import sys;import json;print(json.loads(input())['credentials'][0]['id'])" <<< $(./get_credentials_id.sh) > credentials_id
+python3 -c "import sys;import json;print(json.loads(input())['credentials'][0]['id'])" <<<$(./get_credentials_id.sh) >credentials_id
 
 ./create_multibranch_pipeline.sh
 
