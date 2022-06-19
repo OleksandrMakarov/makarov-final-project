@@ -35,8 +35,7 @@ pipeline {
           REPOSITORY_STAGING = REPOSITORY_STAGING.trim()
           S3_LOGS = S3_LOGS.trim()
           DATE_NOW = DATE_NOW.trim()
-          SLACK_TOKEN = SLACK_TOKEN.trim()
-
+          
           ACCOUNT_REGISTRY_PREFIX = (REPOSITORY.split("/"))[0]
 
           sh """
