@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# Set timezone
+sudo timedatectl set-timezone Europe/Warsaw
+
 # Install Java
 sudo apt update -y
 sudo apt install openjdk-11-jre -y
@@ -53,12 +56,12 @@ sudo chown jenkins /var/lib/jenkins/opt
 sudo chgrp jenkins /var/lib/jenkins/opt
 
 # Download and install arachni as jenkins user
-wget https://github.com/Arachni/arachni/releases/download/v1.6.1.3/arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
-tar -zxf arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
-rm arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
-sudo chown -R jenkins arachni-1.6.1.3-0.6.1.1/
-sudo chgrp -R jenkins arachni-1.6.1.3-0.6.1.1/
-sudo mv arachni-1.6.1.3-0.6.1.1 /var/lib/jenkins/opt
+# wget https://github.com/Arachni/arachni/releases/download/v1.6.1.3/arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
+# tar -zxf arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
+# rm arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
+# sudo chown -R jenkins arachni-1.6.1.3-0.6.1.1/
+# sudo chgrp -R jenkins arachni-1.6.1.3-0.6.1.1/
+# sudo mv arachni-1.6.1.3-0.6.1.1 /var/lib/jenkins/opt
 
 # Save the instance_id, repositories urls and bucket name to use in the pipeline
 sudo /bin/bash -c "echo ${repository_url} > /var/lib/jenkins/opt/repository_url" &&

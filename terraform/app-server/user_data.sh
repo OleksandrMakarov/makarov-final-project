@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# Set timezone
+sudo timedatectl set-timezone Europe/Warsaw
+
 # Install Docker
 sudo apt update -y
 sudo apt install ca-certificates curl gnupg lsb-release -y
