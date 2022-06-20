@@ -26,7 +26,7 @@ aws configure set aws_access_key_id ${aws_access_key}
 aws configure set aws_secret_access_key ${aws_secret_key}
 aws configure set default.region ${aws_region}
 
-# Create a shell script to run the server by taking the image tagged as simple-web-app:release from the ECR
+# Create a shell script to run the server by taking the image tagged as web-app:release from the ECR
 cat <<EOT >start-website
 /bin/sh -e -c 'echo $(aws ecr get-login-password --region ${aws_region}) | docker login -u AWS --password-stdin ${repository_url}'
 sudo docker pull ${repository_url}:release

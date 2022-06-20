@@ -108,6 +108,6 @@ python3 -c "import sys;import json;print(json.loads(input())['credentials'][0]['
 
 # DELETE THE CONFIG FILES
 # sudo rm *.sh credentials_id
-# 123
+# 1234
 
 sudo reboot
