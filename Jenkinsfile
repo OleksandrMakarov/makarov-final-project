@@ -170,7 +170,7 @@ pipeline {
           productionImage = docker.build("$REPOSITORY:release")
           productionImage.push()
           sh """
-            aws ec2 reboot-instances --region us-central-1 --instance-ids $INSTANCE_ID
+            aws ec2 reboot-instances --region eu-central-1 --instance-ids $INSTANCE_ID
           """
         }
       }

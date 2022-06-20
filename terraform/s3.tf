@@ -13,7 +13,7 @@ resource "aws_s3_bucket_acl" "backend_acl" {
 
 resource "aws_s3_bucket" "logs_web_app" {
   bucket = "makarov-logs-web-app"
-
+  force_destroy = true
   tags = {
     Name = "makarov-logs-web-app"
   }
