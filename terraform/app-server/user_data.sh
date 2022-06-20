@@ -30,7 +30,7 @@ aws configure set default.region ${aws_region}
 cat <<EOT >start-website
 /bin/sh -e -c 'echo $(aws ecr get-login-password --region ${aws_region}) | docker login -u AWS --password-stdin ${repository_url}'
 sudo docker pull ${repository_url}:release
-sudo docker run -p 80:8000 ${repository_url}:release
+sudo docker run -d -p 80:8000 ${repository_url}:release
 EOT
 
 # Move the script into the specific amazon ec2 linux start up folder, in order for the script to run after boot
@@ -38,4 +38,4 @@ sudo mv start-website /var/lib/cloud/scripts/per-boot/start-website
 sudo chmod +x /var/lib/cloud/scripts/per-boot/start-website
 
 # Run the script
-/var/lib/cloud/scripts/per-boot/start-website
+sudo /var/lib/cloud/scripts/per-boot/start-website
