@@ -32,24 +32,14 @@ aws configure set default.region ${aws_region}
 
 # Create a shell script to run the server by taking the image tagged as web-app:release from the ECR
 cat <<EOT >start-website
-#!/bin/sh
--e -c 'echo $(aws ecr get-login-password --region ${aws_region}) | docker login -u AWS --password-stdin ${repository_url}'
+/bin/sh -e -c 'echo $(aws ecr get-login-password --region ${aws_region}) | sudo docker login -u AWS --password-stdin ${repository_url}'
 sudo docker pull ${repository_url}:release
 sudo docker run -d -p 80:8000 ${repository_url}:release
-EOT
-
-cat <<EOT >test_script.sh
-#!/bin/sh
-echo "hello world"
 EOT
 
 # Move the script into the specific amazon ec2 linux start up folder, in order for the script to run after boot
 sudo mv start-website /var/lib/cloud/scripts/per-boot/start-website
 sudo chmod +x /var/lib/cloud/scripts/per-boot/start-website
 
-sudo mv test_script.sh /var/lib/cloud/scripts/per-boot/test_script.sh
-sudo chmod +x /var/lib/cloud/scripts/per-boot/test_script.sh
-
 # Run the script
 sudo /var/lib/cloud/scripts/per-boot/start-website
-sudo /var/lib/cloud/scripts/per-boot/test_script.sh
