@@ -3,6 +3,9 @@
 # Set timezone
 sudo timedatectl set-timezone Europe/Warsaw
 
+# Install mc
+sudo apt install mc -y
+
 # Install Docker
 sudo apt update -y
 sudo apt install ca-certificates curl gnupg lsb-release -y
@@ -28,7 +31,8 @@ aws configure set default.region ${aws_region}
 
 # Create a shell script to run the server by taking the image tagged as web-app:release from the ECR
 cat <<EOT >start-website
-/bin/sh -e -c 'echo $(aws ecr get-login-password --region ${aws_region}) | docker login -u AWS --password-stdin ${repository_url}'
+#!/bin/sh 
+-e -c 'echo $(aws ecr get-login-password --region ${aws_region}) | docker login -u AWS --password-stdin ${repository_url}'
 sudo docker pull ${repository_url}:release
 sudo docker run -d -p 80:8000 ${repository_url}:release
 EOT
