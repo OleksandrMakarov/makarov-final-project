@@ -149,7 +149,7 @@ resource "aws_network_interface" "jenkins" {
   security_groups = [aws_security_group.allow-all-outbound.id,
     aws_security_group.allow-ssh-traffic.id,
     aws_security_group.allow-jenkins-traffic.id,
-  aws_security_group.allow-staging-traffic.id]
+    aws_security_group.allow-staging-traffic.id]
 }
 
 # 7.2 Create a Network Interface for Web App
@@ -159,7 +159,7 @@ resource "aws_network_interface" "web-app" {
   private_ips = ["192.168.2.50"]
   security_groups = [aws_security_group.allow-all-outbound.id,
     aws_security_group.allow-ssh-traffic.id,
-  aws_security_group.allow-web-traffic.id]
+    aws_security_group.allow-web-traffic.id]
 }
 
 # 8.1 Assign an Elastic IP to the Network Interface of Jenkins
