@@ -6,7 +6,9 @@ const routes = (app) => {
   app.get("/", (req, res) => {
     return res.render("index.html", {
       title: "My Final Project",
-      ip: req.socket.localAddress
+      local: req.socket.localAddress,
+      ip: req.ip,
+      remote: req.socket.remoteAddress
     });
   });
 
