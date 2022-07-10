@@ -39,7 +39,7 @@ pipeline {
           ACCOUNT_REGISTRY_PREFIX = (REPOSITORY.split("/"))[0]
 
           sh """
-          /bin/sh -e -c 'echo \$(aws ecr get-login-password --region eu-central-1)  | docker login -u AWS --password-stdin $ACCOUNT_REGISTRY_PREFIX'
+          /bin/sh -e -c 'echo \$(aws ecr get-login-password --region eu-central-1) | sudo docker login -u AWS --password-stdin $ACCOUNT_REGISTRY_PREFIX'
           """
         }
       }
