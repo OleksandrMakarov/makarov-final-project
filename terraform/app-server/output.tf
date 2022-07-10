@@ -9,3 +9,7 @@ output "name" {
 output "private-ip" {
   value = aws_instance.app-server.private_ip
 }
+
+output "public-ip" {
+  value = aws_instance.app-server.public_ip
+}
