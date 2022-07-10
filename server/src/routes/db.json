@@ -1,18 +1,10 @@
 [
   {
-    "name": "Fibre Bundle",
-    "email": "fibre@bundle.com"
+    "name": "Oleksandr Makarov",
+    "email": "devops@example.com"
   },
   {
-    "name": "Quantum Electrodynamics",
-    "email": "Quantum@electrodynamics.com"
-  },
-  {
-    "name": "Feynman Diagram",
-    "email": "feynman@diagram.com"
-  },
-  {
-    "name": "Differentiable Manifold",
-    "email": "differentiable@manifold.com"
+    "name": "Olha Makarova",
+    "email": "user1@example.com"
   }
 ]
