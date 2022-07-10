@@ -3,12 +3,10 @@ import path from "path";
 import got from "got";
 
 const routes = (app) => {
-  app.get("/", (req, res) => {
+  app.get("/", (req, res) => 
+  {
     return res.render("index.html", {
       title: "My Final Project",
-      local: req.socket.localAddress,
-      ip: req.ip,
-      remote: req.socket.remoteAddress
     });
   });
 
