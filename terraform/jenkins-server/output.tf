@@ -9,3 +9,7 @@ output "name" {
 output "private-ip" {
   value = aws_instance.jenkins_server.private_ip
 }
+
+output "public-ip" {
+  value = aws_instance.jenkins_server.public_ip
+}
