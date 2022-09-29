@@ -1,7 +1,10 @@
 # Final Project
 
-The final project and related presentation were completed according to requirements.  
+The final project and related presentation were completed according to requirements.
+
+Technology stack: \
+AWS, Terraform, Docker, Jenkins, Linux, etc.
 
 Link to <a id="raw-url" href="presentation/Final_Project_OleksandrMakarov.pdf">Final project presentation</a>
 
-Link to <a id="raw-url" href="https://github.com/OleksandrMakarov/makarov-final-project">Final Project Git repo</a>
+![project_pipeline](presentation/project_pipeline.png)
